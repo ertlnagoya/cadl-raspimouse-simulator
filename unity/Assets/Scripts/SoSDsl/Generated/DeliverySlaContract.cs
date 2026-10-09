@@ -201,8 +201,8 @@ namespace CADL.SosDsl {
 
         private bool IsTerminal(DeliverySlaState s) {
             switch (s) {
-                case DeliverySlaState.Violated: return true;
                 case DeliverySlaState.Completed: return true;
+                case DeliverySlaState.Violated: return true;
                 case DeliverySlaState.Terminated: return true;
                 default: return false;
             }
