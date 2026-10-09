@@ -40,7 +40,7 @@ cd arbitrator/C-SoS/main
 go run main.go -config ../../../unity/Assets/streamingAssets/cadl_config.json
 ```
 
-`unity/` は教材の前提条件に書かれたバージョンの Unity で開き、
+`unity/` は **Unity 6000.2.9f1**（Unity 6.2。プロジェクトを保存したバージョン）で開き、
 `Assets/Scenes/C-SoS.unity` を開いてください。
 
 ## 契約コードの生成

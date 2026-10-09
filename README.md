@@ -41,8 +41,8 @@ cd arbitrator/C-SoS/main
 go run main.go -config ../../../unity/Assets/streamingAssets/cadl_config.json
 ```
 
-Open `unity/` with the Unity version given in the textbook's prerequisites,
-then open `Assets/Scenes/C-SoS.unity`.
+Open `unity/` with **Unity 6000.2.9f1** (Unity 6.2), the version the project is
+saved with, then open `Assets/Scenes/C-SoS.unity`.
 
 ## Generating the contract code
 
