@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:ScrollView name="root-container" style="padding: 16px;">
+        <ui:Label text="MCP For Unity" name="title" class="title" />
+        <ui:VisualElement name="sections-container" class="section-stack" />
+    </ui:ScrollView>
+</ui:UXML>

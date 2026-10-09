@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+
+# Go build products (run with `go run`, or build locally)
+arbitrator/C-SoS/main/main
+arbitrator/C-SoS/main/main.exe
+arbitrator/C-SoS/main/csos_arbitrator
+
+# Logs written by the demos and the simulator
+*.ndjson
+*.log
+
+.DS_Store

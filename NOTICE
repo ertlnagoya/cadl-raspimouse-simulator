@@ -1,0 +1,22 @@
+CADL Raspimouse Simulator
+Copyright 2024-2026 ERTL, Graduate School of Informatics, Nagoya University
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+Third-party components included in this repository:
+
+- unity/Assets/Prefabs/RasPiMouse/Parts/raspimouse_description/
+  Raspberry Pi Mouse robot description, Copyright (c) 2016-2020 RT Corporation,
+  MIT License (see the LICENSE file in that directory).
+
+- unity-mcp-custom/MCPForUnity/
+  Fork of Unity MCP, Copyright (c) 2025 CoplayDev, MIT License
+  (see unity-mcp-custom/LICENSE).
+
+- unity/Assets/Scripts/NATS.Client.1.0.2/
+  NATS .NET client, Copyright The NATS Authors, Apache License 2.0.
+
+- unity/Assets/TextMesh Pro/
+  TextMesh Pro essential resources and examples distributed with the Unity
+  Editor, subject to the Unity Companion License; the bundled fonts carry
+  their own licenses (see the files next to each font).
