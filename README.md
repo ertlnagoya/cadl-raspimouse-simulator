@@ -9,7 +9,7 @@ network under a Collaborative System of Systems (C-SoS), and the contracts
 written in CADL / SoS-DSL are monitored while they run.
 
 This repository contains only what the course needs. Follow the
-[hands-on textbook](https://ertlnagoya.github.io/cadl-spec/docs/handson/main-textbook)
+[hands-on textbook](https://www.ertl.jp/cadl-spec/docs/handson/main-textbook)
 for the full walkthrough; the notes below are a map of the repository.
 
 ## Layout
