@@ -22,15 +22,18 @@ namespace Display
         private void Start()
         {
             empty = new GameObject().transform;
-            // Support both Cinemachine 3.x (CinemachineCamera) and 2.x (CinemachineVirtualCamera)
-            var cam = GetComponent<CinemachineCamera>();
+            // The scenes still carry the Cinemachine 2.x CinemachineVirtualCamera,
+            // which Cinemachine 3.x keeps as a deprecated component. Look the
+            // camera up by the common base class so that both it and the 3.x
+            // CinemachineCamera are found.
+            var cam = GetComponent<CinemachineVirtualCameraBase>();
             if (cam != null)
             {
                 cam.Follow = empty;
             }
             else
             {
-                Debug.LogWarning("[CamOp] CinemachineCamera not found. Camera follow disabled.");
+                Debug.LogWarning("[CamOp] No Cinemachine camera on this object. Camera follow disabled.");
             }
         }
 
