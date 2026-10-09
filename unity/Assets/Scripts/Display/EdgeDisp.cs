@@ -40,13 +40,12 @@ namespace Display
             if (timer < queryInterval) return;
             timer = 0f;
 
-            var n = nats.Send("disp", new Demand {Src = num0, Dst = num1});
-            if (n == -1)
+            if (!DispQuery.TryQuery(nats, num0, num1, out bool occupied))
             {
                 lastFailed = true;
                 return;
             }
-            myMat.color = n == 1 ? color : Color.white;
+            myMat.color = occupied ? color : Color.white;
         }
 
         private void OnDestroy()

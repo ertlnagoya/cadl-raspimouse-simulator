@@ -66,7 +66,7 @@ namespace LineTrace
         /// <summary>
         /// Send a D-SoS request and get the raw string response.
         /// </summary>
-        public string SendRaw(string sub, Demand demand)
+        public string SendRaw(string sub, Demand demand, bool logFailure = true)
         {
             if (connection == null) return ErrorResult.ToString();
             try
@@ -78,7 +78,8 @@ namespace LineTrace
             }
             catch (Exception e)
             {
-                Debug.LogWarning($"[Nats] Request '{sub}' failed: {e.GetType().Name}");
+                if (logFailure)
+                    Debug.LogWarning($"[Nats] Request '{sub}' failed: {e.GetType().Name}");
                 return ErrorResult.ToString();
             }
         }
@@ -86,10 +87,14 @@ namespace LineTrace
         /// <summary>
         /// Send a D-SoS request. Response is a plain integer (next node ID or negative for rejection).
         /// </summary>
-        public int Send(string sub, Demand demand)
+        /// <param name="logFailure">
+        /// Pass false for optional queries (e.g. the occupancy display) where a missing
+        /// responder is expected and the caller reports it itself.
+        /// </param>
+        public int Send(string sub, Demand demand, bool logFailure = true)
         {
             if (connection == null) return ErrorResult;
-            string raw = SendRaw(sub, demand);
+            string raw = SendRaw(sub, demand, logFailure);
             if (int.TryParse(raw, out int result))
                 return result;
             // Fallback: try parsing as JSON DemandReply

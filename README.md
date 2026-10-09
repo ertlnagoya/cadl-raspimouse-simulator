@@ -55,6 +55,37 @@ of [cadl](https://github.com/ertlnagoya/cadl):
     --unity ../cadl-raspimouse-simulator/unity
 ```
 
+## The MCP-SoS scene
+
+The hands-on course uses `C-SoS.unity` only. `Assets/Scenes/MCP-SoS.unity`
+(an Acknowledged SoS in which the robots are driven through
+[MCP for Unity](unity-mcp-custom/MCPForUnity/README.md) instead of an
+arbitrator) needs a different configuration file. With the bundled
+`cadl_config.json` (`sosType: collaborative`) the scene disables its robots'
+`Pilot_MCP` component and nothing moves.
+
+Generate the configuration in a checkout of
+[cadl](https://github.com/ertlnagoya/cadl) and write it over the bundled one:
+
+```bash
+cadl sim-gen examples/raspimouse_mcp_sos.cadl --target unity \
+    -o ../cadl-raspimouse-simulator/unity/Assets/streamingAssets/cadl_config.json
+```
+
+The generated file has `sosType: acknowledged`. Start `nats-server` (no
+arbitrator is needed), open `Assets/Scenes/MCP-SoS.unity` and press Play. To
+go back to the course setup, restore the file:
+
+```bash
+git checkout -- unity/Assets/streamingAssets/cadl_config.json
+```
+
+MCP for Unity sends anonymous usage statistics unless the environment
+variable `DISABLE_TELEMETRY=true` is set before Unity starts.
+
+`Assets/Scenes/D-SoS.unity` is included for reference; its arbitrator is not
+part of this export.
+
 ## About this repository
 
 The simulator is developed in a separate research repository; this one is a
