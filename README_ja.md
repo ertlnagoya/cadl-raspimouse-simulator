@@ -8,7 +8,7 @@ Language）のハンズオン講座で使うシミュレータです。5 台の 
 CADL / SoS-DSL で書いた契約を実行中に監視します。
 
 このリポジトリには講座に必要なものだけを収録しています。手順は
-[ハンズオン教材](https://ertlnagoya.github.io/cadl-spec/ja/docs/handson/main-textbook)
+[ハンズオン教材](https://www.ertl.jp/cadl-spec/ja/docs/handson/main-textbook)
 に沿って進めてください。以下はリポジトリの案内です。
 
 ## 構成

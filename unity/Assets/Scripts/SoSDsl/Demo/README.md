@@ -73,7 +73,7 @@ by:
 cd cadl_repo
 cadl codegen examples/sos_dsl_robot_delivery.cadl \
     --target unity-csharp \
-    --output ../raspimouse-swarm-simulator/unity/Assets/Scripts/SoSDsl
+    --output ../cadl-raspimouse-simulator/unity/Assets/Scripts/SoSDsl
 ```
 
 Re-run after any change to `lifecycle:` / `monitors:` blocks in the

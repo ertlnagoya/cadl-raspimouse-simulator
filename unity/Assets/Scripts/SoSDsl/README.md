@@ -34,7 +34,7 @@ Generated/      # one set of files per contract that declares lifecycle:
    render visuals or write logs.
 
 The generator's semantics match the Python runtime in
-`raspimouse-swarm-simulator/cadl/runtime/engine.py` — a generated
+`cadl-raspimouse-simulator/cadl/runtime/engine.py` — a generated
 contract that passes the Python tests behaves the same in Unity.
 
 Reward and sanction *execution* is intentionally out of scope (v0.1):
