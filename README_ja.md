@@ -54,6 +54,37 @@ go run main.go -config ../../../unity/Assets/streamingAssets/cadl_config.json
     --unity ../cadl-raspimouse-simulator/unity
 ```
 
+## MCP-SoS シーン
+
+講座で使うのは `C-SoS.unity` だけです。`Assets/Scenes/MCP-SoS.unity`
+（アービトレータの代わりに
+[MCP for Unity](unity-mcp-custom/MCPForUnity/README.md) 経由でロボットを動かす
+Acknowledged SoS）は、別の設定ファイルを必要とします。同梱の
+`cadl_config.json`（`sosType: collaborative`）のままでは、シーンがロボットの
+`Pilot_MCP` コンポーネントを無効にするため、何も動きません。
+
+[cadl](https://github.com/ertlnagoya/cadl) のチェックアウトで設定を生成し、
+同梱のファイルに上書きします。
+
+```bash
+cadl sim-gen examples/raspimouse_mcp_sos.cadl --target unity \
+    -o ../cadl-raspimouse-simulator/unity/Assets/streamingAssets/cadl_config.json
+```
+
+生成されたファイルは `sosType: acknowledged` になります。`nats-server` を起動し
+（アービトレータは不要です）、`Assets/Scenes/MCP-SoS.unity` を開いて Play を
+押してください。講座用の設定に戻すには、ファイルを元に戻します。
+
+```bash
+git checkout -- unity/Assets/streamingAssets/cadl_config.json
+```
+
+MCP for Unity は、Unity の起動前に環境変数 `DISABLE_TELEMETRY=true` を設定
+しない限り、匿名の利用統計を送信します。
+
+`Assets/Scenes/D-SoS.unity` は参考として含めています。対応するアービトレータは
+この書き出しには含まれていません。
+
 ## このリポジトリについて
 
 シミュレータ本体は別の研究用リポジトリで開発しており、このリポジトリは講座で
