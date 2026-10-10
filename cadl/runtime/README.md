@@ -8,7 +8,8 @@ contract execution model, as specified in
 The runtime consumes a CADL Sim-IR JSON document that includes the
 extension's `lifecycle:` and `monitors:` blocks and drives one
 contract instance per delivery request through its lifecycle, emitting
-an NDJSON event log that the cadl-explorer Lifecycle View consumes.
+an NDJSON event log (`--log <path>`). The cadl-explorer Contract Lifecycle
+page reads the same Sim-IR JSON; it does not read the log.
 
 ## End-to-end pipeline
 
