@@ -607,7 +607,7 @@ func main() {
 	// Handle next node messages
 	// [Motivation Extension] For C-SoS, motivation affects the verification
 	// response. When an over-budget robot proposes a route, the arbitrator
-	// may reject it with a higher retry count, symmetrically to how A-SoS
+	// may reject it with a higher retry count, symmetrically to how D-SoS
 	// motivation throttling works. This makes motivation a latent variable
 	// that both governance types interpret through their own institutional lens.
 	go start(nc, sub.Next, func(msg *nats.Msg, demand Demand) {

@@ -56,12 +56,14 @@ python -m cadl.runtime.demo_delivery --scenario battery
 ## Tests
 
 ```bash
-PYTHONPATH=. python -m pytest cadl/runtime/tests/test_engine.py -v
+PYTHONPATH=. python -m pytest cadl/runtime/tests -v
 ```
 
-14 tests cover the predicate evaluator, lifecycle happy path,
-deadline-driven `on_violation` lift, deadline cancellation on early
-ack, periodic-monitor lift, and NDJSON log persistence.
+26 tests: 14 in `test_engine.py` cover the predicate evaluator,
+lifecycle happy path, deadline-driven `on_violation` lift, deadline
+cancellation on early ack, periodic-monitor lift, and NDJSON log
+persistence; 12 in `test_multi_robot.py` cover the multi-robot demo
+(`python -m cadl.runtime.multi_robot_demo --summary`).
 
 ## Scope (v0.1)
 

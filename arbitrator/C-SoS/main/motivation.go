@@ -1,7 +1,7 @@
 package main
 
 // ──────────────────────────────────────────────────────────────────────
-// motivation.go — A-SoS Motivation-Sensitive Governance Extension
+// motivation.go — Motivation-Sensitive Governance Extension (D-SoS model)
 //
 // Loads motivationConfig from cadl_config.json and provides a budget-
 // based throttling mechanism. When a robot's cumulative goal count
@@ -82,7 +82,7 @@ func LoadMotivationConfig(path string) MotivationConfig {
 			mc.Model, mc.Rho, mc.Kappa, mc.BudgetBase, mc.WaitScale)
 		fmt.Printf("[Motivation] Profile: %s, agents: %v\n", mc.Profile, mc.AgentMotivation)
 	} else {
-		fmt.Println("[Motivation] Disabled (baseline A-SoS behavior)")
+		fmt.Println("[Motivation] Disabled (baseline behavior)")
 	}
 
 	return mc
