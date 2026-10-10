@@ -11,7 +11,7 @@ and provides a small in-process runtime that:
 - runs declarative monitors (event-driven and periodic) and emits
   violations / lifecycle transitions on rule match,
 - writes a JSON log of every transition / violation / reward event,
-  consumable by cadl-explorer's Lifecycle View and downstream tools.
+  for downstream tools (cadl-explorer reads the Sim-IR, not this log).
 
 Reward and sanction *execution* (e.g. token transfer, blacklisting)
 is intentionally out of scope for v0.1; the runtime *records* reward

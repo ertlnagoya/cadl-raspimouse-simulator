@@ -26,8 +26,8 @@ Key design decisions
    are silently skipped — they are still valid CADL.
 
 4. **Logging.** All emitted events are appended to a ``log`` list and,
-   if a ``log_path`` was supplied, also serialized as NDJSON. The
-   cadl-explorer Violation Trace View consumes this NDJSON.
+   if a ``log_path`` was supplied, also serialized as NDJSON for
+   downstream tools (cadl-explorer reads the Sim-IR, not this log).
 """
 
 from __future__ import annotations

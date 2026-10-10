@@ -1,5 +1,5 @@
 """
-CADL — Collective Autonomous Description Language
+CADL — Contract Architecture Description Language
 
-Extended with A-SoS motivation-sensitive governance support.
+Extended with D-SoS motivation-sensitive governance support.
 """
