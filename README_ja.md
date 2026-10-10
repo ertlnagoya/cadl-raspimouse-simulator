@@ -32,12 +32,12 @@ python3 -m pytest cadl/runtime/tests -q
 リポジトリのルートで実行してください。ディレクトリ名 `cadl` はコンパイラの
 Python パッケージと同名ですが、ルートで実行すればこちらが使われます。
 
-アービトレータには Go 1.21 以上と、起動済みの NATS サーバーが必要です。
+アービトレータには Go 1.23 以上と、起動済みの NATS サーバーが必要です。
 
 ```bash
 nats-server &
 cd arbitrator/C-SoS/main
-go run main.go -config ../../../unity/Assets/streamingAssets/cadl_config.json
+go run . -config ../../../unity/Assets/streamingAssets/cadl_config.json
 ```
 
 `unity/` は **Unity 6000.2.9f1**（Unity 6.2。プロジェクトを保存したバージョン）で開き、

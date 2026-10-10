@@ -23,7 +23,7 @@ an NDJSON event log that the cadl-explorer Lifecycle View consumes.
   │  *.ir.json          │  Sim-IR (Appendix E.7)
   └──────────┬──────────┘
              │
-             ├──────────────►  cadl-explorer / SoS_DSL_Lifecycle page
+             ├──────────────►  cadl-explorer / Contract Lifecycle page
              │                 (graphviz state machine + monitors panel)
              │
              ▼

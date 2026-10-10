@@ -33,12 +33,12 @@ python3 -m pytest cadl/runtime/tests -q
 Run these from the repository root. The directory is named `cadl` like the
 compiler's Python package; running from the root makes Python pick this one.
 
-The arbitrator needs Go 1.21+ and a running NATS server:
+The arbitrator needs Go 1.23+ and a running NATS server:
 
 ```bash
 nats-server &
 cd arbitrator/C-SoS/main
-go run main.go -config ../../../unity/Assets/streamingAssets/cadl_config.json
+go run . -config ../../../unity/Assets/streamingAssets/cadl_config.json
 ```
 
 Open `unity/` with **Unity 6000.2.9f1** (Unity 6.2), the version the project is
