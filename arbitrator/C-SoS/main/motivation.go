@@ -1,7 +1,7 @@
 package main
 
 // ──────────────────────────────────────────────────────────────────────
-// motivation.go — Motivation-Sensitive Governance Extension (D-SoS model)
+// motivation.go — Motivation-Sensitive Governance Extension
 //
 // Loads motivationConfig from cadl_config.json and provides a budget-
 // based throttling mechanism. When a robot's cumulative goal count
@@ -11,9 +11,9 @@ package main
 // Budget formula: B_i = BudgetBase + Kappa * m_i
 // Extra wait:     floor(Rho * max(0, used_i - B_i) * WaitScale)
 //
-// This file is a drop-in addition to D-SoS main.go.
-// No changes to existing code are required — just call
-// LoadMotivationConfig() and ComputeExtraWait() from main.go.
+// Written for the D-SoS arbitrator and reused here with a per-robot
+// delivery cap added (MaxDeliveries, IsRetired): the C-SoS main.go calls
+// LoadMotivationConfig() and ComputeExtraWait().
 // ──────────────────────────────────────────────────────────────────────
 
 import (
