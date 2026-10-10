@@ -76,6 +76,6 @@ Implemented:
 - NDJSON log of `lifecycle` and `violation` events
 
 Out of scope for v0.1 (see Appendix E.8):
-- Reward and sanction *execution* — events are recorded only
+- Reward and sanction handling — nothing is recorded or executed
 - ROS2 topic ↔ port mapping — the host wires `post_event`
 - Multi-instance fairness, persistence, replay

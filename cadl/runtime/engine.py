@@ -1,7 +1,7 @@
 """SoS-DSL contract runtime — engine implementation (Appendix E v0.1).
 
 Single-file, dependency-free (stdlib only). Designed to be embedded
-into the raspimouse-swarm-simulator process and driven by the
+into the simulator process and driven by the
 arbitrator / world simulator's event loop. The runtime is fully
 synchronous: callers post events and tick the clock; transitions and
 violations are emitted as side-effects.

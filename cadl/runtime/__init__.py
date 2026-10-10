@@ -10,12 +10,11 @@ and provides a small in-process runtime that:
   transitions when they expire,
 - runs declarative monitors (event-driven and periodic) and emits
   violations / lifecycle transitions on rule match,
-- writes a JSON log of every transition / violation / reward event,
+- writes a JSON log of every lifecycle transition and violation,
   for downstream tools (cadl-explorer reads the Sim-IR, not this log).
 
-Reward and sanction *execution* (e.g. token transfer, blacklisting)
-is intentionally out of scope for v0.1; the runtime *records* reward
-and sanction events without actuating them.
+Reward and sanction handling (e.g. token transfer, blacklisting) is
+out of scope for v0.1: the runtime neither records nor executes them.
 """
 
 from .engine import (
