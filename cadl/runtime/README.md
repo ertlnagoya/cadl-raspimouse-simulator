@@ -2,8 +2,7 @@
 
 Reference implementation of the SoS-DSL extension's per-instance
 contract execution model, as specified in
-[cadl-spec Appendix E](https://github.com/ertlnagoya/cadl-spec)
-(`appendix-e-sos-dsl.md`).
+[Appendix E of the CADL specification](https://www.ertl.jp/cadl-spec/docs/spec/appendix-e-sos-dsl/).
 
 The runtime consumes a CADL Sim-IR JSON document that includes the
 extension's `lifecycle:` and `monitors:` blocks and drives one
@@ -16,7 +15,7 @@ page reads the same Sim-IR JSON; it does not read the log.
 ```
   ┌─────────────────────┐
   │  examples/*.cadl    │  CADL source with lifecycle: + monitors:
-  │  (cadl_repo)        │  (Appendix E.6)
+  │  (cadl repository)  │  (Appendix E.6)
   └──────────┬──────────┘
              │  cadl sim-ir … --format json
              ▼

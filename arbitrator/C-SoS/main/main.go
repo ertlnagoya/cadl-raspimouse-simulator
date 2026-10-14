@@ -13,8 +13,8 @@ import (
 
 	"sort"
 
-	"github.com/ertlnagoya/controller/graph"
-	"github.com/ertlnagoya/controller/state"
+	"controller/graph"
+	"controller/state"
 	"github.com/nats-io/nats.go"
 	"gonum.org/v1/plot"
 	"gonum.org/v1/plot/plotter"
