@@ -73,7 +73,7 @@ namespace CADL.SosDsl {
         }
         private void Eval_collision_watch(long nowMs, ContractRuntime rt) {
             var snap = rt.SnapshotFor(_owner);
-            if (!PredicateEvaluator.Evaluate("min_dist(ROBOT[i].position, OBSTACLES.positions) < 0.05", snap)) return;
+            if (!PredicateEvaluator.Evaluate("min_dist(ROBOT[i].position, DISPATCHER.obstacle_positions) < 0.05", snap)) return;
             rt.Emit(new ContractEvent {
                 Kind = ContractEventKind.Violation,
                 ContractId = _owner.ContractId,
