@@ -52,9 +52,15 @@ namespace CADL.SosDsl.Demo {
             Runtime.Tick(NowMs);
         }
 
+        /// <summary>
+        /// Post an event. Give <paramref name="instanceId"/> to deliver it
+        /// to one contract instance only; without it every open instance
+        /// receives it.
+        /// </summary>
         public void Post(string eventName,
-                         IDictionary<string, object> payload = null) {
-            Runtime.PostEvent(eventName, NowMs, payload);
+                         IDictionary<string, object> payload = null,
+                         string instanceId = null) {
+            Runtime.PostEvent(eventName, NowMs, payload, instanceId);
         }
 
         public void UpdateWorld(IDictionary<string, object> snapshot) {
