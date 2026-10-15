@@ -38,6 +38,10 @@ namespace CADL.SosDsl.Demo {
     /// Each contract instance ID is "robot-{id}-{deliveryNo}", which
     /// is stable, unique within a run, and easy to correlate with
     /// the pilot's own logs in the Console.
+    ///
+    /// Every event is posted to this robot's own instance only
+    /// (instanceId), so one robot's progress never moves another
+    /// robot's contract.
     /// </summary>
     [RequireComponent(typeof(Pilot_CSoS))]
     public sealed class PilotContractBridge : MonoBehaviour {
@@ -117,7 +121,7 @@ namespace CADL.SosDsl.Demo {
                 // assign+accept fire together the contract leaves Assigned
                 // within one frame and no Tick ever samples a monitor
                 // while state==Assigned (battery_guard would never fire).
-                _host.Post("DISPATCHER -> ROBOT[i] : route_assignment");
+                _host.Post("DISPATCHER -> ROBOT[i] : route_assignment", instanceId: _instance.InstanceId);
                 _assignedAtMs     = _host.NowMs;
                 _emittedAssign    = true;
                 _emittedAccept    = false;
@@ -128,20 +132,20 @@ namespace CADL.SosDsl.Demo {
             // gated on state==Assigned get at least one sample, THEN accept.
             if (_emittedAssign && !_emittedAccept &&
                 _host.NowMs - _assignedAtMs >= assignedDwellMs) {
-                _host.Post("ROBOT[i] -> DISPATCHER : ack(accepted)");
+                _host.Post("ROBOT[i] -> DISPATCHER : ack(accepted)", instanceId: _instance.InstanceId);
                 _emittedAccept = true;
             }
 
             if (_emittedAccept && !_emittedInTransit) {
                 // First tick after accept while delivering → InTransit.
-                _host.Post("ROBOT[i].status == InTransit");
+                _host.Post("ROBOT[i].status == InTransit", instanceId: _instance.InstanceId);
                 _emittedInTransit = true;
             }
 
             int dc = _pilot.DeliveryCount;
             if (dc > _prevDeliveryCount) {
                 // Delivery completed (pilot's CompleteGoal was reached).
-                _host.Post("ROBOT[i].status == Delivered");
+                _host.Post("ROBOT[i].status == Delivered", instanceId: _instance.InstanceId);
                 // The contract has now closed. Prepare for the next.
                 OpenFreshInstance();
             }
