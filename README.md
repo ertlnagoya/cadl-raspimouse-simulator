@@ -9,16 +9,16 @@ network under a Collaborative System of Systems (C-SoS), and the contracts
 written in CADL / SoS-DSL are monitored while they run.
 
 This repository contains only what the course needs. Follow the
-[hands-on textbook](https://www.ertl.jp/cadl-spec/docs/handson/main-textbook)
+[textbook](https://www.ertl.jp/cadl-spec/docs/textbook/)
 for the full walkthrough; the notes below are a map of the repository.
 
 ## Layout
 
 | Path | What it is | Used in |
 |---|---|---|
-| `cadl/runtime/` | Python reference runtime for SoS-DSL contracts (lifecycle, deadlines, monitors) with scripted demos and tests | Step 5, exercises |
-| `unity/` | Unity project: the C-SoS scene, robot and road prefabs, and `Assets/Scripts/SoSDsl/` where generated C# is dropped | Steps 5–6 |
-| `arbitrator/C-SoS/` | Go arbitrator that grants road segments and assigns deliveries over NATS | Step 6 |
+| `cadl/runtime/` | Python reference runtime for SoS-DSL contracts (lifecycle, deadlines, monitors) with scripted demos and tests | Chapters 7 and 9 (and their exercises) |
+| `unity/` | Unity project: the C-SoS scene, robot and road prefabs, and `Assets/Scripts/SoSDsl/` where generated C# is dropped | Chapters 7–8 |
+| `arbitrator/C-SoS/` | Go arbitrator that grants road segments and assigns deliveries over NATS | Chapter 8 |
 | `unity-mcp-custom/MCPForUnity/` | Unity package the project references from `unity/Packages/manifest.json` | (opened by Unity) |
 
 ## Quick check

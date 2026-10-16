@@ -8,16 +8,16 @@ Language）のハンズオン講座で使うシミュレータです。5 台の 
 CADL / SoS-DSL で書いた契約を実行中に監視します。
 
 このリポジトリには講座に必要なものだけを収録しています。手順は
-[ハンズオン教材](https://www.ertl.jp/cadl-spec/ja/docs/handson/main-textbook)
+[テキストブック](https://www.ertl.jp/cadl-spec/ja/docs/textbook/)
 に沿って進めてください。以下はリポジトリの案内です。
 
 ## 構成
 
 | パス | 内容 | 使う場面 |
 |---|---|---|
-| `cadl/runtime/` | SoS-DSL 契約（ライフサイクル・期限・モニタ）の Python 参照ランタイム。スクリプト化したデモとテスト付き | Step 5、演習 |
-| `unity/` | Unity プロジェクト。C-SoS シーン、ロボットと道路のプレハブ、生成した C# を置く `Assets/Scripts/SoSDsl/` | Step 5〜6 |
-| `arbitrator/C-SoS/` | NATS 経由で道路区間の許可と配送の割り当てを行う Go 製アービトレータ | Step 6 |
+| `cadl/runtime/` | SoS-DSL 契約（ライフサイクル・期限・モニタ）の Python 参照ランタイム。スクリプト化したデモとテスト付き | 第 7・9 章（とその演習） |
+| `unity/` | Unity プロジェクト。C-SoS シーン、ロボットと道路のプレハブ、生成した C# を置く `Assets/Scripts/SoSDsl/` | 第 7〜8 章 |
+| `arbitrator/C-SoS/` | NATS 経由で道路区間の許可と配送の割り当てを行う Go 製アービトレータ | 第 8 章 |
 | `unity-mcp-custom/MCPForUnity/` | `unity/Packages/manifest.json` が参照する Unity パッケージ | （Unity が読み込む） |
 
 ## 動作確認
