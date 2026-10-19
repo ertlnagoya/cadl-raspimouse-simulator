@@ -94,7 +94,7 @@ class ViolationEvent:
 
 _TOKEN_RE = re.compile(
     r'\s*(?:'
-    r'(?P<NUM>\d+(?:\.\d+)?)'
+    r'(?P<NUM>-?\d+(?:\.\d+)?)'
     r'|(?P<STR>"[^"]*")'
     r'|(?P<OP><=|>=|==|!=|<|>)'
     r'|(?P<KW>AND|OR|NOT|IN|in)'
@@ -118,6 +118,11 @@ def _tokenize(expr: str) -> list[tuple[str, str]]:
             raise ValueError(f"unexpected token at {pos}: {expr[pos:]!r}")
         for name, val in m.groupdict().items():
             if val is not None:
+                # A minus right after an operand is a subtraction, which
+                # this evaluator does not support.
+                if (name == "NUM" and val.startswith("-") and out
+                        and out[-1][0] in ("NUM", "STR", "ID", "RP", "RB")):
+                    raise ValueError(f"unsupported operator at {pos}: {expr[pos:]!r}")
                 out.append((name, val))
                 break
         pos = m.end()
