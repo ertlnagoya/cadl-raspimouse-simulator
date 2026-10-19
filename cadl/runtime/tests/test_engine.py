@@ -59,6 +59,18 @@ class TestPredicate:
         # Quoted form still works.
         assert evaluate_predicate('state == "Delivering"', w) is True
 
+    def test_negative_numbers(self):
+        w = {"p": -2, "x": 3.0}
+        assert evaluate_predicate("p == -2", w) is True
+        assert evaluate_predicate("p < -1", w) is True
+        assert evaluate_predicate("x > -0.5", w) is True
+        assert evaluate_predicate("p IN [-2, 1]", w) is True
+        assert evaluate_predicate("p == 2", w) is False
+        # A minus right after an operand is a subtraction, which is not
+        # supported: the expression is false instead of reading `x`.
+        assert evaluate_predicate("x -1", w) is False
+        assert evaluate_predicate("x-1 > 0", w) is False
+
     def test_lenient_on_failure(self):
         # A malformed expression must not raise.
         assert evaluate_predicate("x <<<", {}) is False
