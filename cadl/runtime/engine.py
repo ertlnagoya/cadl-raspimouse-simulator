@@ -340,6 +340,10 @@ class TimerService:
                     and t.transition_id == transition_id)
         ]
 
+    def cancel_instance(self, instance_id: str) -> None:
+        """Cancel every timer of one instance."""
+        self._timers = [t for t in self._timers if t.instance_id != instance_id]
+
     def expired(self, now_ms: int) -> list[_Timer]:
         due = [t for t in self._timers if t.deadline_ms <= now_ms]
         if due:
@@ -397,8 +401,10 @@ class StateMachineEngine:
         new = transition["to_state"]
         inst.state = new
 
-        # Cancel any deadline timer pending on this transition.
-        self.runtime.timers.cancel(inst.instance_id, transition.get("id", ""))
+        # A deadline is scoped to the from states of its transition (L-4)
+        # and restarts on every entry into one of them, a self-loop
+        # included (E.5): cancel them all and arm those of the new state.
+        self.runtime.timers.cancel_instance(inst.instance_id)
 
         ev = LifecycleEvent(
             contract_id=inst.contract_id,
@@ -461,6 +467,10 @@ class MonitorEngine:
                 self._evaluate(inst, m, ev.t_ms)
 
     def _evaluate(self, inst: ContractInstance, m: dict, t_ms: int) -> None:
+        # Another monitor of the same tick or event may have moved the
+        # instance to a terminal state: a closed instance is finished.
+        if inst.closed:
+            return
         rule = m.get("rule") or ""
         world = self.runtime.world_snapshot(inst)
         if not evaluate_predicate(rule, world):
@@ -650,6 +660,9 @@ class ContractRuntime:
                          cause: str, t_ms: int) -> None:
         old = inst.state
         inst.state = target_state
+        # As for a transition: the deadlines of the old state end, those of
+        # the new state start now (E.5).
+        self.timers.cancel_instance(inst.instance_id)
         self._record_lifecycle(LifecycleEvent(
             contract_id=inst.contract_id,
             instance_id=inst.instance_id,
@@ -662,14 +675,22 @@ class ContractRuntime:
         lc = inst.spec.get("lifecycle") or {}
         if target_state in (lc.get("terminal") or []):
             inst.closed = True
+        else:
+            self._arm_deadlines_for(inst, t_ms)
 
     # --- public tick -------------------------------------------------------
 
     def tick(self, now_ms: int) -> None:
+        moved: set[str] = set()
         for t in self.timers.expired(now_ms):
             inst = self._instances.get(t.instance_id)
             if inst is None or inst.closed:
                 continue
+            # A forced move earlier in this tick ended the other deadlines
+            # of the instance.
+            if t.instance_id in moved:
+                continue
+            moved.add(t.instance_id)
             ve = ViolationEvent(
                 contract_id=t.contract_id,
                 instance_id=t.instance_id,

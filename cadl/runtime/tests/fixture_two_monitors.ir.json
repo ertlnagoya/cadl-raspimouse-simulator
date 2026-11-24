@@ -1,0 +1,104 @@
+{
+  "name": "Repro1",
+  "sos_type": "Collaborative",
+  "description": "",
+  "environment": {},
+  "institution": {
+    "actors": [
+      {
+        "id": "A",
+        "role": "a",
+        "autonomy": "high",
+        "count": null,
+        "capabilities": [],
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "id": "B",
+        "role": "b",
+        "autonomy": "high",
+        "count": null,
+        "capabilities": [],
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "contracts": [
+      {
+        "id": "C1",
+        "parties": [
+          "A",
+          "B"
+        ],
+        "assume": [
+          "A.x >= 0"
+        ],
+        "guarantee": [
+          "B.y >= 0"
+        ],
+        "governance": {
+          "alpha": null,
+          "beta": null,
+          "decision_holder": null,
+          "sharing_mode": null,
+          "incentive_type": null,
+          "lambda": null
+        },
+        "violation_detect": null,
+        "violation_action": null,
+        "lifecycle": {
+          "states": [
+            "Open",
+            "Failed"
+          ],
+          "initial": "Open",
+          "terminal": [
+            "Failed"
+          ],
+          "transitions": []
+        },
+        "monitors": [
+          {
+            "id": "m_first",
+            "observe": [
+              "A.x"
+            ],
+            "sampling_kind": "periodic",
+            "sampling_period_ms": 1000,
+            "rule": "A.x > 5",
+            "on_match_violation": null,
+            "on_match_transition": "Failed",
+            "on_match_severity": "Major"
+          },
+          {
+            "id": "m_second",
+            "observe": [
+              "A.x"
+            ],
+            "sampling_kind": "periodic",
+            "sampling_period_ms": 1000,
+            "rule": "A.x > 3",
+            "on_match_violation": null,
+            "on_match_transition": "Failed",
+            "on_match_severity": "Critical"
+          }
+        ],
+        "norms": [],
+        "counts_as": []
+      }
+    ]
+  },
+  "protocol": {
+    "protocols": [],
+    "events": []
+  },
+  "algorithm": {
+    "algorithms": []
+  },
+  "metrics": [],
+  "transitions": [],
+  "task_arbitration": null,
+  "motivation": null,
+  "stochastic_model": null
+}

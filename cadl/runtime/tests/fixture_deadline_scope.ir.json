@@ -1,0 +1,122 @@
+{
+  "name": "Repro2",
+  "sos_type": "Collaborative",
+  "description": "",
+  "environment": {},
+  "institution": {
+    "actors": [
+      {
+        "id": "A",
+        "role": "a",
+        "autonomy": "high",
+        "count": null,
+        "capabilities": [],
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "id": "B",
+        "role": "b",
+        "autonomy": "high",
+        "count": null,
+        "capabilities": [],
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "contracts": [
+      {
+        "id": "C2",
+        "parties": [
+          "A",
+          "B"
+        ],
+        "assume": [
+          "A.x >= 0"
+        ],
+        "guarantee": [
+          "B.y >= 0"
+        ],
+        "governance": {
+          "alpha": null,
+          "beta": null,
+          "decision_holder": null,
+          "sharing_mode": null,
+          "incentive_type": null,
+          "lambda": null
+        },
+        "violation_detect": null,
+        "violation_action": null,
+        "lifecycle": {
+          "states": [
+            "Idle",
+            "Waiting",
+            "Done",
+            "Failed"
+          ],
+          "initial": "Idle",
+          "terminal": [
+            "Done",
+            "Failed"
+          ],
+          "transitions": [
+            {
+              "id": "request",
+              "from_states": [
+                "Idle"
+              ],
+              "to_state": "Waiting",
+              "on": "A -> B : req",
+              "when": null,
+              "deadline_ms": null,
+              "on_violation_transition": null,
+              "on_violation_severity": null,
+              "emit": []
+            },
+            {
+              "id": "answer",
+              "from_states": [
+                "Waiting"
+              ],
+              "to_state": "Done",
+              "on": "B -> A : ans",
+              "when": null,
+              "deadline_ms": 5000,
+              "on_violation_transition": "Failed",
+              "on_violation_severity": "Major",
+              "emit": []
+            },
+            {
+              "id": "withdraw",
+              "from_states": [
+                "Waiting"
+              ],
+              "to_state": "Idle",
+              "on": "A -> B : cancel",
+              "when": null,
+              "deadline_ms": null,
+              "on_violation_transition": null,
+              "on_violation_severity": null,
+              "emit": []
+            }
+          ]
+        },
+        "monitors": [],
+        "norms": [],
+        "counts_as": []
+      }
+    ]
+  },
+  "protocol": {
+    "protocols": [],
+    "events": []
+  },
+  "algorithm": {
+    "algorithms": []
+  },
+  "metrics": [],
+  "transitions": [],
+  "task_arbitration": null,
+  "motivation": null,
+  "stochastic_model": null
+}
