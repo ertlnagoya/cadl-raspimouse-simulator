@@ -461,6 +461,10 @@ class MonitorEngine:
                 self._evaluate(inst, m, ev.t_ms)
 
     def _evaluate(self, inst: ContractInstance, m: dict, t_ms: int) -> None:
+        # Another monitor of the same tick or event may have moved the
+        # instance to a terminal state: a closed instance is finished.
+        if inst.closed:
+            return
         rule = m.get("rule") or ""
         world = self.runtime.world_snapshot(inst)
         if not evaluate_predicate(rule, world):
